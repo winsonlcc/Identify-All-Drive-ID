@@ -1,4 +1,5 @@
 Identify All Type Device ID
+
 This repository contains a C++ program that demonstrates how to identify various types of device IDs, including vendor ID, model number, and serial number, from storage devices connected to a Windows system. 
 The program utilizes Windows IOCTL commands to retrieve device information, such as drive geometry and length, and then parses the data to extract the relevant device IDs.
 
