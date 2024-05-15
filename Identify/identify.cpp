@@ -179,7 +179,7 @@ int Command::GetDriveInfo(HANDLE hDevice)
         strSerial += static_cast<char>((swap_byte & 0xFF00) >> 8);
         strSerial += static_cast<char>(swap_byte & 0x00FF);
     }
-    printf("Serial Number: %s \r\n", strSerial.c_str());
+    printf("Serial Number: %s \r\n", strSerial.c_str());  //TODO need to trim the string
    
     // Model Number
     std::string strModel;
@@ -280,13 +280,14 @@ int Command::GetGeometryInfo(HANDLE hDevice)
     }
 
     // Check if the drive has a 4096-byte (4Kn) block size
-    if (diskGeometry.BytesPerSector == 4096) {
-        lengthInfo.Length.QuadPart *= 8; // Multiply by 8 to get the correct capacity for 4Kn drives
-    }
+    //if (diskGeometry.BytesPerSector == 4096) {
+    //    lengthInfo.Length.QuadPart *= 8; // Multiply by 8 to get the correct capacity for 4Kn drives
+    //}
 
 
     // Calculate the capacity in binary gigabytes
-    double capacityGB = static_cast<double>(lengthInfo.Length.QuadPart) / (1024 * 1024 * 1024);
+    //double capacityGB = static_cast<double>(lengthInfo.Length.QuadPart) / (1024 * 1024 * 1024);
+    double capacityGB = static_cast<double>(lengthInfo.Length.QuadPart) / (1000 * 1000 * 1000);
 
     // Calculate the maximum LBA
     ULONGLONG maxLBA = lengthInfo.Length.QuadPart / diskGeometry.BytesPerSector;
